@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    <meta charset="utf-8">
+    {% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    {% endblock head %}
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        body > header {
+            align-items: center;
+            border: solid black 1px;
+            display: flex;
+            margin-bottom: 16px;
+            justify-content: space-between;
+        }
+        nav ul {
+            padding: 0;
+        }
+        nav li {
+            display: inline;
+            list-style: none;
+        }
+        main {
+            margin: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="authors.html">Authors</a></li>
+                <li><a href="categories.html">Series</a></li>
+                <li><a href="tags.html">Volumes</a></li>
+            </ul>
+        </nav>
+        Institute of Medieval Music (Test Site)
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

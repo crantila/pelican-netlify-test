@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{%endblock%}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    {% import 'translations.html' as translations with context %}
+    {{ translations.translations_for(page) }}
+
+    <ul>
+        <li>Series: {{ page.series }}</li>
+        {% if page.volume_part is defined %}
+            <li>Volume: {{ page.volume }}/{{ page.volume_part }}</li>
+        {% else %}
+            <li>Volume: {{ page.volume }}</li>
+        {% endif %}
+        {% if page.author is not equalto AUTHOR %}
+            <li>Author: {{ page.author }}</li>
+        {% endif %}
+        <li>Price: &euro;{{ page.price }}</li>
+        <li>ISBN: {{ page.isbn }}</li>
+    </ul>
+
+    {{ page.content }}
+
+{% endblock %}

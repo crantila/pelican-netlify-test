@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Tags{% endblock %}
+
+{% block content %}
+<h1>Multi-Part Volumes</h1>
+
+<ol>
+{% for volume in pages|groupby('volume') %}
+    {% if volume.list|length > 1 %}
+    <li>
+        <a href="#{{ volume.list[0].volume.slug }}">{{ volume.grouper }}</a>
+        <div id="{{ volume.list[0].volume.slug }}">
+            <h2>{{ volume.list[0].series}}, Vol. {{ volume.grouper }}</h2>
+            <ol>
+            {% for book in volume.list|sort(attribute='volume_part') %}
+                <li>Part {{ book.volume_part }}: <a href="{{ book.url }}">{{ book.title }}</a></li>
+            {% endfor %}
+            </ol>
+        </div>
+    </li>
+    {% endif %}
+{% endfor %}
+</ol>
+{% endblock %}
